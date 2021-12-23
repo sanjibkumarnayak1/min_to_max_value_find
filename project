@@ -1,0 +1,92 @@
+Home Test Question:
+===================
+Write an aggregate that returns a text formatted like: min -> max for an integer column, where min and max are minimum and maximum values of that column.
+
+For example:
+SELECT min_to_max(val) FROM (VALUES(5),(3),(6),(7),(9),(10),(7)) t(val);
+min_to_max
+-----------
+3 -> 10
+
+Extra points:
+● make it work for wider range of datatypes
+● make the output format configurable in any way
+● use of C language
+● package into an extension
+
+
+Home Test Answer:
+=================
+
+About the code logic:
+=====================
+This program takes n number of elements from the user and stores it in the array.
+
+To find the largest element,
+
+    the first two elements of array are checked and the largest of these two elements are placed in arr[0].
+    the first and third elements are checked and largest of these two elements is placed in arr[0].
+    this process continues until the first and last elements are checked.
+    the largest number will be stored in the arr[0] position.
+
+To find the smallest element,
+
+    the first two elements of array are checked and the smallest of these two elements are placed in arr[0].
+    the first and third elements are checked and smallest of these two elements is placed in arr[0].
+    this process continues until the first and last elements are checked.
+    the smallest number will be stored in the arr[0] position.
+
+
+NOTE -> This code written in C program and works for positive, negative and float values.
+
+
+C Code:
+=======
+#include <stdio.h>
+
+int main() {
+  int n;
+  double arr[100];
+  printf("Enter the number of elements (1 to 100): ");
+  scanf("%d", &n);
+
+  for (int i = 0; i < n; ++i) {
+    printf("Enter number%d: ", i + 1);
+    scanf("%lf", &arr[i]);
+  }
+
+  // storing the largest number to arr[0]
+  for (int i = 1; i < n; ++i) {
+    if (arr[0] < arr[i]) {
+      arr[0] = arr[i];
+    }
+  }
+
+  printf("Largest element = %.2lf\n", arr[0]);
+
+  // storing the smallest  number to arr[0]
+  for (int i = 1; i < n; ++i) {
+    if (arr[0] > arr[i]) {
+      arr[0] = arr[i];
+    }
+  }
+
+  printf("Smallest element = %.2lf", arr[0]);
+
+  return 0;
+}
+
+
+
+Out put:
+=======
+Enter the number of elements (1 to 100): 6
+Enter number1: 45
+Enter number2: 32.6
+Enter number3: -12.34
+Enter number4: 0
+Enter number5: 455
+Enter number6: 65
+Largest element = 455.00
+Smallest element = -12.34
+
